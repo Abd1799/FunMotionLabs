@@ -1,10 +1,14 @@
-
 import './App.css';
+import Banner from './components/Banner';
+import Navbar from './components/Navbar';
+import WelcomeSection from './components/WelcomeSection';
 
 function App() {
   return (
     <div className="App">
-    <h1>Welcome to FunMotionLabs</h1>
+    <Navbar/>
+    <Banner/>
+    <WelcomeSection/>
     </div>
   );
 }
