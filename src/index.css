@@ -7,3 +7,14 @@ body{
      color:white;
      font-family: 'Poppins', sans-serif;;
 }
+.fade-anim img {
+       animation: fadeAnim 2s linear;
+}
+@keyframes fadeAnim {
+  from {
+   opacity: 0;
+  }
+ to {
+   opacity: 1;
+  }
+}

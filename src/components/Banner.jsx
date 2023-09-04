@@ -1,24 +1,49 @@
-import React from 'react'
+import React,{useState,useEffect,useRef} from 'react'
 import { TypeAnimation } from "react-type-animation";
 
+let count=0;
 const Banner = () => {
+  const Images = [
+    "https://img.freepik.com/free-photo/one-person-men-adult-headset-protective-eyewear-digitally-generated-image-computer-graphic-virtual-reality-generative-ai_188544-31824.jpg?size=626&ext=jpg",
+    "https://img.freepik.com/free-photo/man-neon-suit-sits-chair-with-neon-sign-that-says-word-it_188544-27011.jpg?size=626&ext=jpg",
+    "https://img.freepik.com/free-photo/futuristic-adult-virtual-reality-handsfree-headset-generated-by-ai_188544-26034.jpg?size=626&ext=jpg",
+    "https://img.freepik.com/free-photo/cyberpunk-warriors-urban-scenery_23-2150712388.jpg?size=626&ext=jpg"
+  ];
+  const [imageIndex, setImageIndex]=useState(0);
+  const sliderRef = useRef();
+  useEffect(()=>{
+    startSlider();
+     sliderRef.current.addEventListener("animationend", removeAnimation);
+  },[])
+  const startSlider=()=>{
+    setInterval(()=>{
+      count = (count+1)%Images.length;
+      sliderRef.current.classList.add("fade-anim");
+      setImageIndex(count)
+    },3000)
+  }
+  const removeAnimation = () => {
+    sliderRef.current.classList.remove("fade-anim");
+  };
+
+
   return (
-    <div className="relative">
+    <div ref={sliderRef} className="relative aspect-w-16 aspect-h-9 ">
       <img
-        className="h-96 w-full brightness-50"
-        src="https://images.pexels.com/photos/596750/pexels-photo-596750.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+        className="h-fit object-cover object-center shadow-xl shadow-blue-gray-900/50 w-full brightness-50"
+        src={Images[imageIndex]}
       />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-        <h1 className="-webkit-font-smoothing: auto text-3xl">
-          Elevate you gaming exprience with
+        <h1 className="-webkit-font-smoothing: auto text-xl md:text-3xl">
+          Elevate you gaming experience with
         </h1>
-          <TypeAnimation
-            sequence={["FunMotionLabs", 2000, "Abdul Ahad", 2000,"Creative Gaming",2000]}
-            wrapper="span"
-            speed={50}
-            className="text-cyan-400/100 text-6xl"
-            repeat={Infinity}
-          />
+        <TypeAnimation
+          sequence={["FunMotionLabs", 2000, "Creative Gaming", 2000]}
+          wrapper="span"
+          speed={50}
+          className="text-cyan-400/100 text-2xl md:text-6xl"
+          repeat={Infinity}
+        />
       </div>
     </div>
   );

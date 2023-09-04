@@ -7,7 +7,7 @@ const Navbar = () => {
 
   return (
     <div className="p-3 items-center flex justify-between">
-      <div className="text-left text-4xl">
+      <div className="text-left text-2xl md:text-4xl">
         <h1>FunMotionLabs</h1>
       </div>
       <div>
