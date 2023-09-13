@@ -1,6 +1,6 @@
 import React from "react";
 import Banner from "../components/Banner";
-import CustomerReviews from "../components/CustomerReviews";
+// import CustomerReviews from "../components/CustomerReviews";
 import LatestNews from "../components/LatestNews";
 import Newsletter from "../components/Newsletter";
 import WelcomeSection from "../components/WelcomeSection";

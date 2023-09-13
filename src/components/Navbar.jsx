@@ -6,8 +6,11 @@ import { AiOutlineFork } from "react-icons/ai";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import { RiContactsLine } from "react-icons/ri";
 import { PiPlugsConnectedLight } from "react-icons/pi";
+import { Button } from "@material-tailwind/react";
+
 // import { ReactComponent as MainIcon } from "../assets/images/Icon.svg";
 import { Link } from "react-router-dom";
+// import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
 import Modal from "./Modal";
 const Navbar = () => {
   const [showModal, setShowModal] = useState(false);
@@ -22,10 +25,10 @@ const Navbar = () => {
   };
 
   return (
-    <div className="bg-[#1f2937] shadow-xl shadow-blue-gray-900 z-30 p-3 items-center flex justify-between sticky top-0">
+    <div className="bg-[#1f2937] shadow-xl shadow-blue-gray-900 z-40 p-3 items-center flex justify-between sticky top-0">
       <div className="text-left text-2xl md:text-4xl">
         <div className="flex items-center justify-between">
-          <img src="/assets/images/icon.svg" className=" w-7 h-7" />
+          <img src="/assets/images/icon.svg" alt="" className=" w-7 h-7" />
           <Link to="/" onClick={() => scrollToSection("Banner")}>
             <h1 className="text-2xl font-semibold">FunMotionLabs</h1>
           </Link>
@@ -60,22 +63,32 @@ const Navbar = () => {
             </div>
             <div className="flex items-center">
               <AiOutlineInfoCircle className="w-4 h-4" />
-              <li className="py-3 px-1 flex text-base items-center">About</li>
+              <li className="py-3 px-1 flex text-base items-center">
+                <Link
+                  to="/aboutcontact"
+                  onClick={() => scrollToSection("ContactUs")}
+                >
+                  About
+                </Link>
+              </li>
             </div>
             <div className="flex items-center">
               <AiOutlineFork className="w-4 h-4" />
               <li className="py-3 px-1 flex text-base items-center">
-                What we Offer
+                <Link to="/" onClick={() => scrollToSection("WhatweOffer")}>
+                  What we Offer
+                </Link>
               </li>
             </div>
             <div className="flex items-center">
               <RiContactsLine className="w-4 h-4" />
-              <li className="py-3 px-1 flex text-base items-center">Contact</li>
-            </div>
-            <div className="flex items-center">
-              <PiPlugsConnectedLight className="w-4 h-4" />
               <li className="py-3 px-1 flex text-base items-center">
-                Get in Touch
+                <Link
+                  to="/aboutcontact"
+                  onClick={() => scrollToSection("ContactUs")}
+                >
+                  Contact
+                </Link>
               </li>
             </div>
           </ul>
@@ -88,24 +101,33 @@ const Navbar = () => {
               Home
             </Link>
           </li>
-          <li className="flex items-center">About</li>
+          <li className="flex items-center">
+            <Link to="/aboutcontact" onClick={() => scrollToSection("AboutUs")}>
+              About
+            </Link>
+          </li>
           <li className="flex items-center">
             <Link to="/" onClick={() => scrollToSection("WhatweOffer")}>
               What we Offer
             </Link>
           </li>
-          <li className="flex items-center">Contact</li>
-          <li className="flex items-center">Get in Touch</li>
+          <li className="flex items-center">
+            <Link
+              to="/aboutcontact"
+              onClick={() => scrollToSection("ContactUs")}
+            >
+              Contact
+            </Link>
+          </li>
+          {/* <li className="flex items-center">Get in Touch</li> */}
           <div className="flex gap-6">
-            <button
+            <Button
               type="button"
               onClick={() => setShowModal(true)}
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded-none"
             >
-              <div className="flex justify-between">
-                <div className="pl-1">Subscribe</div>
-              </div>
-            </button>
+              Subscribe
+            </Button>
             <Modal isVisible={showModal} onClose={() => setShowModal(false)} />
           </div>
         </ul>

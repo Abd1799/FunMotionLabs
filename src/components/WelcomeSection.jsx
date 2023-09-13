@@ -1,20 +1,29 @@
 import React from 'react'
+import { Button } from "@material-tailwind/react";
+import { Link } from "react-router-dom";
 
 const WelcomeSection = () => {
+
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
   return (
-    <div className="bg-[#083344] p-16 text-left flex justify-between">
-      <div>
+    <div className="bg-[#083344] p-16 text-left md:flex justify-between">
+      <div className="hidden md:block">
         <img
-          className=" w-full h-full shadow-lg shadow-blue-gray-700/50 object-center"
+          className="w-full h-full shadow-lg shadow-blue-gray-700/50 object-center"
           src="/assets/images/Welcome.gif"
           alt="Welcome gif"
         />
       </div>
-      <div className="w-2/3">
-        <h1 className="text-2xl font-semibold md:text-4xl pt-10 pl-10">
+      <div className="md:w-2/3 w-full">
+        <h1 className="text-2xl font-semibold md:text-4xl pt-10 md:pl-10">
           Welcome to FunMotionLabs
         </h1>
-        <p className="pt-10 pr-20 pl-10 md:text-base text-xs">
+        <p className="pt-10 md:pr-20 md:pl-10 md:text-base text-sm">
           At FunMotionLabs, our unwavering commitment lies in the relentless
           pursuit of redefining the very limits of the gaming realm through the
           ingenious application of cutting-edge AI methodologies and the
@@ -24,10 +33,12 @@ const WelcomeSection = () => {
           captivating maelstrom of innovation and artistry that promises nothing
           short of a paradigm shift in the entire gaming industry.
         </p>
-        <div className="pl-10 pt-10">
-          <button className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-2 rounded-none shadow-lg shadow-blue-gray-900/50">
-            Find out More
-          </button>
+        <div className="md:pl-10 pt-10">
+          <Link to="/aboutcontact" onClick={()=>scrollToSection("AboutUs")}>
+            <Button className="bg-blue-500 hover:bg-blue-700 text-white py-3 px-6 rounded-none shadow-lg shadow-blue-gray-900/50">
+              Find out More
+            </Button>
+          </Link>
         </div>
       </div>
     </div>
