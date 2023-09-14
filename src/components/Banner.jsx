@@ -1,6 +1,6 @@
 import React,{useState,useEffect,useRef} from 'react'
 import { TypeAnimation } from "react-type-animation";
-import Navbar from './Navbar';
+
 
 let count=0;
 const Banner = () => {
@@ -35,14 +35,14 @@ const Banner = () => {
       />
 
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-        <h1 className="-webkit-font-smoothing: auto pb-4 text-xl md:text-3xl">
+        <h1 className="-webkit-font-smoothing: auto pb-4 text-xl md:text-3xl text-center">
           Elevate you gaming experience with
         </h1>
         <TypeAnimation
           sequence={["FunMotionLabs", 2000, "Creative Gaming", 2000]}
           wrapper="span"
           speed={50}
-          className="text-cyan-400/100 text-2xl md:text-5xl"
+          className="text-cyan-400/100 text-2xl md:text-5xl text-center"
           repeat={Infinity}
         />
       </div>

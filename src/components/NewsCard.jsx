@@ -6,7 +6,7 @@ import { Chip } from "@material-tailwind/react";
 const NewsCard = (props) => {
   return (
     <Link to={`/singleblog/${props.id}`}>
-      <div className="bg-[#334155] drop-shadow-2xl shadow-blue-gray-900/50 max-w-sm rounded overflow-hidden shadow-lg cursor-pointer transform transition duration-500 hover:scale-110">
+      <div className="bg-[#334155] drop-shadow-2xl shadow-blue-gray-900/50 max-w-sm rounded overflow-hidden shadow-lg cursor-pointer transform transition duration-500 hover:scale-110 mt-4 mb-4 lg:mt-0 lg:mb-0">
         <div className="px-6 py-4">
           <div className="font-bold text-cyan-400 text-xl mb-2 truncate">
             {props.title}
