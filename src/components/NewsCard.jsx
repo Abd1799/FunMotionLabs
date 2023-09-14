@@ -12,7 +12,7 @@ const NewsCard = (props) => {
             {props.title}
           </div>
           <div className="text-xs text-gray-400 pb-5">
-            Posted on: 12/01/2000
+            Posted on: 15/09/2023
           </div>
           <p className="text-white text-base line-clamp-3">{props.introduction}</p>
         </div>
