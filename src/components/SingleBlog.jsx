@@ -63,7 +63,7 @@ const SingleBlog = () => {
         </div>
         <div className="grid grid-cols-2 pt-5">
           <div className="text-left">
-            <h2 className="text-sm text-gray-400">Posted on 01/01/2001</h2>
+            <h2 className="text-sm text-gray-400">Posted on 15/09/2023</h2>
           </div>
         </div>
         {/* Introduction section */}

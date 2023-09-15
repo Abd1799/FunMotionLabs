@@ -6,15 +6,29 @@ import { AiOutlineFork } from "react-icons/ai";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import { RiContactsLine } from "react-icons/ri";
 import { PiPlugsConnectedLight } from "react-icons/pi";
-import { Button } from "@material-tailwind/react";
+
+import {
+  Drawer,
+  Button,
+  Typography,
+  IconButton,
+} from "@material-tailwind/react";
 
 // import { ReactComponent as MainIcon } from "../assets/images/Icon.svg";
 import { Link } from "react-router-dom";
 // import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
 import Modal from "./Modal";
 const Navbar = () => {
-  const [showModal, setShowModal] = useState(false);
-  const [toggle, setToggle] = useState(false);
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const [open, setOpen] = useState(false);
+  const openDrawer = () => setOpen(true);
+  const closeDrawer = () => setOpen(false);
+
+  const handleOpen = () => {
+    setModalOpen(!isModalOpen);
+  };
+
 
   // Scroll into view function for navigation
   const scrollToSection = (sectionId) => {
@@ -25,7 +39,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="bg-[#1f2937] shadow-xl shadow-blue-gray-900 z-40 p-3 items-center flex justify-between sticky top-0">
+    <div className="bg-[#1f2937] shadow-xl shadow-blue-gray-900/50 z-40 p-3 items-center flex justify-between sticky top-0">
       <div className="text-left text-2xl md:text-4xl">
         <div className="flex items-center justify-between">
           <img src="/assets/images/icon.svg" alt="" className=" w-7 h-7" />
@@ -36,27 +50,53 @@ const Navbar = () => {
       </div>
       <div>
         {/* Menu for mobile view */}
-        {toggle ? (
-          <BiMenu
-            onClick={() => setToggle(!toggle)}
-            className="md:hidden block"
-          />
-        ) : (
-          <IoMdClose
-            onClick={() => setToggle(!toggle)}
-            className="md:hidden block"
-          />
-        )}
-        <div
-          className={`duration-500 shadow-lg shadow-blue-gray-900/50 md:hidden bg-[#1f2937] w-1/3 h-screen fixed text-start backdrop-blur-xl bg-opacity-25 mt-5 p-4 text-xs 
-        ${toggle ? "left-[-100%]" : "left-[0%]"}
-        `}
+
+        <IconButton
+          onClick={openDrawer}
+          className="md:hidden block"
+          variant="text"
+          color="white"
         >
+          <BiMenu />
+        </IconButton>
+        <Drawer
+          open={open}
+          onClose={closeDrawer}
+          size={200}
+          className="p-4 bg-[#1f2937] backdrop-blur-xl bg-opacity-25"
+        >
+          <div className="mb-6 flex items-center justify-between">
+            <Typography variant="h6" color="white">
+              FunmotionLabs
+            </Typography>
+            <IconButton variant="text" color="blue-gray" onClick={closeDrawer}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={2}
+                stroke="currentColor"
+                className="h-5 w-5"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </IconButton>
+          </div>
           <ul>
             <div className="flex items-center">
               <AiOutlineHome className="w-4 h-4" />
               <li className="py-3 px-1 flex text-base items-center">
-                <Link to="/" onClick={() => scrollToSection("Banner")}>
+                <Link
+                  to="/"
+                  onClick={() => {
+                    scrollToSection("Banner");
+                    closeDrawer();
+                  }}
+                >
                   Home
                 </Link>
               </li>
@@ -66,7 +106,10 @@ const Navbar = () => {
               <li className="py-3 px-1 flex text-base items-center">
                 <Link
                   to="/aboutcontact"
-                  onClick={() => scrollToSection("ContactUs")}
+                  onClick={() => {
+                    scrollToSection("ContactUs");
+                    closeDrawer();
+                  }}
                 >
                   About
                 </Link>
@@ -75,7 +118,13 @@ const Navbar = () => {
             <div className="flex items-center">
               <AiOutlineFork className="w-4 h-4" />
               <li className="py-3 px-1 flex text-base items-center">
-                <Link to="/" onClick={() => scrollToSection("WhatweOffer")}>
+                <Link
+                  to="/"
+                  onClick={() => {
+                    scrollToSection("WhatweOffer");
+                    closeDrawer();
+                  }}
+                >
                   What we Offer
                 </Link>
               </li>
@@ -85,14 +134,17 @@ const Navbar = () => {
               <li className="py-3 px-1 flex text-base items-center">
                 <Link
                   to="/aboutcontact"
-                  onClick={() => scrollToSection("ContactUs")}
+                  onClick={() => {
+                    scrollToSection("ContactUs");
+                    closeDrawer();
+                  }}
                 >
                   Contact
                 </Link>
               </li>
             </div>
           </ul>
-        </div>
+        </Drawer>
 
         {/* Menu for >768px screens */}
         <ul className="hidden md:flex gap-10 p-2 text-xs">
@@ -123,12 +175,12 @@ const Navbar = () => {
           <div className="flex gap-6">
             <Button
               type="button"
-              onClick={() => setShowModal(true)}
+              onClick={handleOpen}
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded-none"
             >
               Subscribe
             </Button>
-            <Modal isVisible={showModal} onClose={() => setShowModal(false)} />
+            <Modal open={isModalOpen} onClose={handleOpen} />
           </div>
         </ul>
       </div>
